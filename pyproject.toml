@@ -1,0 +1,23 @@
+[project]
+name = "sportxcli"
+version = "0.1.0"
+description = "校园体育(步道乐跑系)自动化 CLI,人机双用,配置化多租户/多模块框架"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = [
+    "playwright>=1.40",
+    "ddddocr>=1.4",
+    "pillow>=9.0",
+    "tomli>=2.0; python_version < '3.11'",
+]
+
+[project.scripts]
+sportxcli = "sportxcli.cli:main"
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

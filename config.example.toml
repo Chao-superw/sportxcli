@@ -1,0 +1,47 @@
+# ============================================================
+# campus-sports-cli 配置示例
+# 复制成 config.toml 后填入你自己(对有权访问的院校实例)逆向得到的值。
+# config.toml 已被 .gitignore 忽略,不会入库。
+#
+# 优先级(高 -> 低): 命令行 flag  >  环境变量 CSPORTS_*  >  config.toml  >  内置默认
+# ============================================================
+
+[platform]
+# 步道乐跑系 H5 部署的基址。不同学校不同,占位符请替换成你有权访问的实例。
+base_url = "https://YOUR_SCHOOL_DOMAIN/bdlp_h5_fitness_test"
+# SaaS 多租户标识:每个学校一个 school_id(从入口 URL 参数抓到)
+school_id = "0"
+user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) ..."
+
+[auth]
+# 你的账号标识(部分接口签名需要);从登录流程/抓包获得
+uid = "YOUR_UID"
+# 签名与加密所需的密钥
+# 这些是【目标系统的机密】。仓库里只放占位符;
+# 你需要对自己有权访问的实例自行逆向,并只保存在本地 config.toml。
+sign_salt = "YOUR_SIGN_SALT"
+aes_key   = "YOUR_AES_KEY_16B"
+aes_iv    = "YOUR_AES_IV_16B"
+
+# ============================================================
+# 模块配置:每个业务模块一段 [modules.xxx]
+# 新增模块时在此加一段即可,核心代码无需改动。
+# ============================================================
+
+[modules.booking]
+enabled = true
+# 目标场馆(示例:某羽毛球馆);均为占位符
+venue_id    = "0"
+stadium_id  = "0"
+category_id = "0"
+user_range  = []          # 该馆各场地 area_id 列表(查场用)
+poll_interval = 1.0       # 抢场轮询间隔(秒)
+captcha_retry = 8         # 单次提交验证码识别失败最多重试次数
+
+# 未来扩展示例:校园乐跑(线上云跑)
+# 目前仅规划只读查询能力(排行/记录/规则)。是否支持"开始乐跑"取决于
+# 合规判断,默认关闭。详见 docs/04-extending-modules.md。
+[modules.running]
+enabled = false
+run_zone = ""             # 跑区名,如 "XX体育场跑区"
+mode     = "readonly"     # readonly = 只查排行/记录;其它模式默认禁用

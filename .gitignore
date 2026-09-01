@@ -1,0 +1,32 @@
+# ==== 隐私与凭证:绝不入库 ====
+# 登录态 / 会话(含 PHPSESSID、瑞数 cookie)
+storage_state*.json
+*_session*.json
+# 抓包与运行产物
+*.jsonl
+_last_*.json
+_cookies*.json
+*.log
+_cap_*.png
+_captcha*.png
+# 本地真实配置(从 config.example.toml 复制而来,含真实域名/school_id/密钥)
+config.toml
+config.*.toml
+!config.example.toml
+
+# ==== Python ====
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+
+# ==== OS / 编辑器 ====
+.DS_Store
+.idea/
+.vscode/
